@@ -1,0 +1,33 @@
+FROM quay.io/centos/centos:stream9
+
+RUN dnf upgrade --refresh -y --nodocs && \
+    dnf install --nodocs \
+        policycoreutils-python-utils \
+        python3-dasbus \
+        selinux-policy \
+        systemd \
+        systemd-devel \
+        openssh-server \
+        openssh-clients \
+        dnf-plugin-config-manager \
+    -y && \
+    dnf -y clean all
+
+RUN dnf copr enable -y @centos-automotive-sig/bluechi-snapshot
+RUN dnf install \
+        --nogpgcheck \
+        --nodocs \
+        bluechi \
+        bluechi-debuginfo \
+        bluechi-agent \
+        bluechi-agent-debuginfo \
+        bluechi-ctl \
+        bluechi-ctl-debuginfo \
+        bluechi-selinux \
+        python3-bluechi \
+    -y && \
+    dnf -y clean all
+
+RUN systemctl enable sshd
+
+CMD [ "/sbin/init" ]
