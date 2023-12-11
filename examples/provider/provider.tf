@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT-0
 terraform {
   required_providers {
     bluechi = {
