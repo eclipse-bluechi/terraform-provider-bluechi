@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT-0
 resource "bluechi_node" "main" {
 
   ssh = {

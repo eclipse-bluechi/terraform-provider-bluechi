@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT-0
 resource "aws_vpc" "autosd_demo_vpc" {
   cidr_block = "10.0.0.0/16"
 
